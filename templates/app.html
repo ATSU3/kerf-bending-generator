@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <title>Kerf Bending Generator</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../static/css/style.css">
+  <!-- <script src="static/js/call_svc.js"></script> -->
+  <script src="static/js/vue.js"></script>
+  <script src="static/js/app.js" defer></script>
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="mb-5">
+      <h2>Kerf Check Parts Generator</h2>
+    </div>
+    <div id="app-1">
+      <div class="h" id="js">
+        <form name="par_form">
+          <br>
+          <table>
+            <tr>
+              <th>width:</th>
+              <th><input type="text" name="form_width" size="4" value="14"></th>
+              <th>mm</th>
+              <th></th>
+            </tr>
+            <tr>
+              <th>height:</th>
+              <th><input type="text" name="form_height" size="4" value="0.05"></th>
+              <th>mm</th>
+            </tr>
+            <tr>
+              <th>thickness:</th>
+              <th><input type="text" name="form_thickness" size="4" value="20"></th>
+              <th>mm</th>
+            </tr>
+            <tr>
+              <th></th>
+            </tr>
+          </table>
+          <br>
+          <br>
+          <button type="button" v-on:click="createSVG">
+            Create SVG
+          </button>
+        </form>
+      </div>
+
+      <div v-if="clicked && success">
+        <h4>Click the image to download</h4>
+        <a v-bind:href="downloadURL" download="kerf_check.svg"><img v-bind:src="downloadURL" /></a>
+      </div>
+      <div v-else-if="clicked">
+        <hr />
+        [[ errorMessage ]]
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
